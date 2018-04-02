@@ -6,7 +6,7 @@ import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import ContentCreate from 'material-ui/svg-icons/content/create';
 import ActionBook from 'material-ui/svg-icons/action/book';
 
-export default class Tabnav extends React.Component {
+class Tabnav extends React.Component {
 
   constructor(props) {
     super(props);
@@ -19,9 +19,11 @@ export default class Tabnav extends React.Component {
   }
 
   handleChange = (value) => {
+    const { onChange } = this.props;
+
     this.setState({ slideIndex: value });
 
-    console.log("send props ", value)
+    return onChange(value)
   };
 
   render() {
@@ -61,3 +63,5 @@ export default class Tabnav extends React.Component {
     });
   }
 }
+
+export default Tabnav
