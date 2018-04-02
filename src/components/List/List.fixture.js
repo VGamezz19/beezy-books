@@ -1,28 +1,28 @@
-// import SelectGenre from './'
+import List from './'
 
-// const data = [
-//     { id: "1", name: " some name" },
-//     { id: "1", name: " some name1" },
-//     { id: "1", name: " some name2" },
-//     { id: "1", name: " some name3" },
-//     { id: "1", name: " some name4" },
-//     { id: "1", name: " some name5" },
-// ];
+const books = [
+    { id: "1", title: " some title", price : 20, resume : "some resume"  },
+    { id: "1", title: " some title1" , price : 20, resume : "some resume" },
+    { id: "1", title: " some title2" , price : 20, resume : "some resume" },
+    { id: "1", title: " some title3" , price : 20, resume : "some resume" },
+    { id: "1", title: " some title4" , price : 20, resume : "some resume" },
+    { id: "1", title: " some title5" , price : 20, resume : "some resume" },
+];
 
-// export default [
-//     {
-//         component: SelectGenre,
-//         name: 'Select - EmptyData',
-//         props: {
-//             onChange: (value) => console.log(value)
-//         }
-//     },
-//     {
-//         component: SelectGenre,
-//         name: 'Select - GenreData',
-//         props: {
-//             onChange: (value) => console.log(value),
-//             data
-//         }
-//     }
-// ]
+export default [
+    {
+        component: List,
+        name: 'List - EmptyList',
+        props: {
+            onChange: (value) => console.log(value)
+        }
+    },
+    {
+        component: List,
+        name: 'List - Listbooks',
+        props: {
+            onChange: (value) => console.log(value),
+            books
+        }
+    }
+]

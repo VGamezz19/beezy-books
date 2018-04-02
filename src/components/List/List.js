@@ -4,7 +4,7 @@ import { Card, CardHeader, CardText } from 'material-ui/Card';
 
 const List = (props) => {
 
-    if (!props.books || props.books.length <= 0) { return }
+    if (!props.books || props.books.length <= 0) { return false }
 
     const { books } = props;
 

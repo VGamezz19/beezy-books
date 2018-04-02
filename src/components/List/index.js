@@ -1,4 +1,14 @@
+/**
+ * Import List Class
+ */
 import List from "./List";
+
+/**
+ * Import List style scss
+ */
 import "./List.scss";
 
-export default List;
+/**
+ * Export
+ */
+export default List
