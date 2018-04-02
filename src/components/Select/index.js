@@ -1,4 +1,14 @@
+/**
+ * Import Select Class
+ */
 import Select from "./Select";
+
+/**
+ * Import Select style scss
+ */
 import "./Select.scss";
 
-export default Select;
+/**
+ * Export
+ */
+export default Select
