@@ -15,7 +15,7 @@ class Tabnav extends React.Component {
       slideIndex: "list",
     };
 
-    this.actioners = ["list", "create", "update"]
+    this.properties = ["list", "create", "update"]
   }
 
   handleChange = (value) => {
@@ -27,7 +27,7 @@ class Tabnav extends React.Component {
   };
 
   render() {
-    const actioners = this.actioners;
+    const properties = this.properties;
     const { slideIndex } = this.state;
 
     return (
@@ -39,26 +39,34 @@ class Tabnav extends React.Component {
           onChange={this.handleChange}
           value={slideIndex}>
 
-          {this._renderTabItems(actioners)}
+          {this._renderTabItems(properties)}
         </Tabs>
       </MuiThemeProvider>
     );
   }
 
-  _renderTabItems(actioners) {
-    return actioners.map((action, index) => {
-
+  /**
+   * Render function
+   * 
+   * To render TabItems for TabNav roo
+   * 
+   * @param {Array<String>} properties
+   * 
+   * @returns {Array<Tab>} Array of TabItems
+   */
+  _renderTabItems(properties) {
+    return properties.map((property, index) => {
       return (
         <Tab
           className={"tab-item"}
           key={index}
           icon={
-            action === "create" ? <ContentAddCircle /> :
-              action === "list" ? <ActionBook /> :
-                action === "update" ? <ContentCreate /> : undefined
+            property === "create" ? <ContentAddCircle /> :
+              property === "list" ? <ActionBook /> :
+                property === "update" ? <ContentCreate /> : undefined
           }
-          value={action}
-          label={action} />
+          value={property}
+          label={property} />
       )
     });
   }
