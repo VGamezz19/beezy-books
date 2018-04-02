@@ -3,7 +3,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class SelectGenre extends Component {
+class Select extends Component {
 
     constructor(props) {
         super(props);
@@ -34,6 +34,8 @@ class SelectGenre extends Component {
                     onChange={this.handleChange}
                     disabled={data === undefined ? true : data.length <= 0 ? true : false}>
 
+                    <MenuItem value={null} primaryText="" />
+
                     {this._renderMenuItem(data)}
 
                 </SelectField>
@@ -59,4 +61,4 @@ class SelectGenre extends Component {
     }
 }
 
-export default SelectGenre
+export default Select

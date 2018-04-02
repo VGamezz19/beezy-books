@@ -1,4 +1,4 @@
-import SelectGenre from './'
+import Select from './'
 
 const data = [
     { id: "1", name: " some name" },
@@ -11,14 +11,14 @@ const data = [
 
 export default [
     {
-        component: SelectGenre,
+        component: Select,
         name: 'Select - EmptyData',
         props: {
             onChange: (value) => console.log(value)
         }
     },
     {
-        component: SelectGenre,
+        component: Select,
         name: 'Select - GenreData',
         props: {
             onChange: (value) => console.log(value),
