@@ -48,7 +48,7 @@ class Tabnav extends React.Component {
   /**
    * Render function
    * 
-   * To render TabItems for TabNav roo
+   * To render TabItems for TabNav
    * 
    * @param {Array<String>} properties
    * 
