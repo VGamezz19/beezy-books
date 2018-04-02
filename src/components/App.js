@@ -152,7 +152,7 @@ class App extends Component {
           <Tabnav onChange={this.handlerTabnav} />
         </header>
 
-        <main>
+        <main className="App-main">
           {dataToList ? <List books={dataToList} /> : undefined}
         </main>
       </div>

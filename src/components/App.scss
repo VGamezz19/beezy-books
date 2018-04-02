@@ -26,3 +26,9 @@
 .App-intro {
     font-size: large;
 }
+
+.App-main {
+  display: flex;
+  padding: 1em;
+  flex-direction: column;
+}
