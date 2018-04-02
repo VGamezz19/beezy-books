@@ -1,0 +1,10 @@
+@import '../../sass/variables';
+
+.select-genre {
+    align-self: center;
+    flex: 2;
+    height: 72px !important;
+    background: $item-main-color !important;
+    margin: 1em;
+    border-radius: 3px;
+}

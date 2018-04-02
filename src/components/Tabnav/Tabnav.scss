@@ -1,0 +1,10 @@
+@import '../../sass/variables';
+.tab-nav {
+    align-self: center;
+    flex: 6;
+    border-radius: 3px;
+}
+
+.tab-item {
+    background: $item-main-color !important;
+}

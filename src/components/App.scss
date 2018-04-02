@@ -1,0 +1,28 @@
+@import '../sass/variables';
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+}
+
+.App-header {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    padding: 0 2em;
+    background: #9e9e9e8c !important;
+}
+
+.App-title {
+    font-size: 1.5em;
+    align-self: center;
+    flex:2;
+}
+
+.App-intro {
+    font-size: large;
+}
