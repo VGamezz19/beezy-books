@@ -7,6 +7,7 @@ class SelectGenre extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             value: null,
         };
@@ -22,21 +23,39 @@ class SelectGenre extends Component {
 
 
     render() {
+        const { data } = this.props;
+        const { value } = this.state;
+
         return (
             <MuiThemeProvider>
                 <SelectField
                     className={"select-genre"}
-                    value={this.state.value}
-                    onChange={this.handleChange}>
+                    value={value}
+                    onChange={this.handleChange}
+                    disabled={data === undefined ? true : data.length <= 0 ? true : false}>
 
-                    <MenuItem value={1} primaryText="Never" />
-                    <MenuItem value={2} primaryText="Every Night" />
-                    <MenuItem value={3} primaryText="Weeknights" />
-                    <MenuItem value={4} primaryText="Weekends" />
-                    <MenuItem value={5} primaryText="Weekly" />
+                    {this._renderMenuItem(data)}
+
                 </SelectField>
             </MuiThemeProvider>
         );
+    }
+
+    /**
+     * Render function
+     * 
+     * To render MenuItem for SelectField Component
+     * 
+     * @param {Array<{}>} data
+     * 
+     * @returns {Array<MenuItem>} Array of Item from select content
+     */
+    _renderMenuItem(data = []) {
+        return data.map(({ name, id }) => {
+            return (
+                <MenuItem key={id} value={name} primaryText={name} />
+            );
+        })
     }
 }
 

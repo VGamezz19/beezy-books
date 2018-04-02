@@ -1,0 +1,52 @@
+[{
+    "id": "0",
+    "name": "maths",
+    "books": [{
+            "id": "0",
+            "title": "maths power book",
+            "resume": "some resumen",
+            "price": 20
+        },
+        {
+            "id": "0",
+            "title": "powa maths",
+            "resume": "some resumen",
+            "price": 40
+        }
+    ]
+},
+{
+    "id": "1",
+    "name": "develop",
+    "books": [{
+            "id": "0",
+            "title": "develop power book",
+            "resume": "some resumen",
+            "price": 20
+        },
+        {
+            "id": "0",
+            "title": "powa develop",
+            "resume": "some resumen",
+            "price": 40
+        }
+    ]
+},
+{
+    "id": "1",
+    "name": "history",
+    "books": [{
+            "id": "0",
+            "title": "history power book",
+            "resume": "some resumen",
+            "price": 20
+        },
+        {
+            "id": "0",
+            "title": "powa history",
+            "resume": "some resumen",
+            "price": 40
+        }
+    ]
+}
+]
