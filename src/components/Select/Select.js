@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Divider from 'material-ui/Divider';
 
 class Select extends Component {
 
@@ -35,6 +36,8 @@ class Select extends Component {
                     disabled={data === undefined ? true : data.length <= 0 ? true : false}>
 
                     <MenuItem value={null} primaryText="" />
+                    
+                    <Divider/>
 
                     {this._renderMenuItem(data)}
 
