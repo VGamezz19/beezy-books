@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Tabnav from "./Tabnav";
 import Select from "./Select";
 import List from "./List";
+import Create from "./Crate";
 
 import './App.scss';
 
@@ -96,21 +97,21 @@ class App extends Component {
   handlerTabnav = (value) => { this.setState({ focusTabnav: value }) }
 
   wichDataList = (focus, select) => {
-    console.log(focus, select)
+
     if (focus !== "list") return false;
 
     if (!select) {
-      return this.extractBooks()
+      return this.retrieveBook()
     }
 
-    return this.extractBooks(select)
+    return this.retrieveBook(select)
   }
 
   /**
    * 
    * Logic Function....
    */
-  extractBooks(select) {
+  retrieveBook(select) {
     const { genre } = this.state;
 
     const books = [];
@@ -139,6 +140,8 @@ class App extends Component {
     return books;
   }
 
+  createBook = (title, price, genre, resume = null) => { console.log(title, price, genre, resume)}
+
   render() {
     const { genre, focusSelectGenre, focusTabnav } = this.state;
 
@@ -154,6 +157,7 @@ class App extends Component {
 
         <main className="App-main">
           {dataToList ? <List books={dataToList} /> : undefined}
+          {focusTabnav === 'create' ? <Create genre={genre} someSelected={focusSelectGenre} logicApp={[this.createBook]} /> : undefined}
         </main>
       </div>
     );
@@ -161,3 +165,9 @@ class App extends Component {
 }
 
 export default App;
+
+/**
+ * genre={Array{}}
+ * someSelected={string}
+ * logicApp={Array<functions>}
+ */
