@@ -1,11 +1,5 @@
 @import 'sass/variables';
 @import 'sass/extends';
-body {
-    @extend %main-font-app;
-    margin: 0;
-    padding: 0;
-}
-
 html,
 body,
 #root,
@@ -19,4 +13,14 @@ body,
     .App-main {
         height: 80%;
     }
+}
+
+body {
+    @extend %main-font-app;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    display: flex;
 }
