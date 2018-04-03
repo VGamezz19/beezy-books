@@ -88,9 +88,9 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    // const { focusTabnav, focusSelectGenre } = this.state
-  }
+  // componentDidMount() {
+  //   // const { focusTabnav, focusSelectGenre } = this.state
+  // }
 
   handlerSelect = (value) => { this.setState({ focusSelectGenre: value }) }
 
@@ -142,6 +142,8 @@ class App extends Component {
 
   createBook = (title, price, genre, resume = null) => { console.log(title, price, genre, resume)}
 
+  createGenre = (name) => { console.log(name)}
+
   render() {
     const { genre, focusSelectGenre, focusTabnav } = this.state;
 
@@ -157,7 +159,7 @@ class App extends Component {
 
         <main className="App-main">
           {dataToList ? <List books={dataToList} /> : undefined}
-          {focusTabnav === 'create' ? <Create genre={genre} someSelected={focusSelectGenre} logicApp={[this.createBook]} /> : undefined}
+          {focusTabnav === 'create' ? <Create genre={genre} someSelected={focusSelectGenre} logicApp={{ createBook: this.createBook, createGenre: this.createGenre}} /> : undefined}
         </main>
       </div>
     );
