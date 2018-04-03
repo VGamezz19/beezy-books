@@ -2,60 +2,45 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import TextField from 'material-ui/TextField';
+import Select from "../Select";
 class ModalEdit extends Component {
-  state = {
-    // open: false,
-    inputValue: '',
-    // itemId: undefined,
-    // fatherId: undefined,
-  };
 
-  componentWillReceiveProps(props) {
-    const { open, itemTitle: inputValue, itemId } = props
+  constructor(props) {
+    super(props)
 
-    this.setState({ open, inputValue, itemId })
+    this.state = {}
   }
 
-  // componentDidMount() {
-  //   const { open, itemTitle: inputValue, itemId, fatherId } = this.props
-
-  //   this.setState({ open, inputValue, itemId, fatherId })
-  // }
-
-  handleClose = () => {
-    // this.setState({ open: false })
-    this.props.closeModal()
-  }
-
-  // handlerInput = (inputValue) => this.setState({ inputValue })
+  handleClose = () => this.props.closeModal()
 
   handlerInput = (e) => {
     const prop = e.target.name
+
     this.setState({ [prop]: e.target.value })
   }
 
+  handlerSelect = (value) => { this.setState({ genre: value }) }
+
   actionerModal = () => {
 
-    const { handlerEdit } = this.props
-    // const { itemId, inputValue, fatherId } = this.state
+    const { action, type } = this.props
 
-    /* TODO - Validate funcion Inputs */
-    if (true) {
+    this.handleClose();
 
-      this.handleClose();
+    if (type === "genre") {
+      const { name } = this.state;
 
-      /* TODO - Type and nameAction Conditional  */
-      return handlerEdit(/*itemId, inputValue, fatherId*/)
+      return action(name)
     }
 
-    return false
+    const { title, price, genre, resume } = this.state;
+
+    return action(title, price, genre, resume)
   }
 
   render() {
-    const { open, inputs, modalSize, selectData, someSelected } = this.props
-    
-    console.log(selectData, someSelected);
+    const { open, inputs, modalSize, selectData, someSelected, type, actionName } = this.props
 
     const actions = [
       <FlatButton label="Cancel"
@@ -69,18 +54,16 @@ class ModalEdit extends Component {
     return (
       <MuiThemeProvider>
         <Dialog
-          title="Rename Element"
+          title={`${actionName} ${type}`}
           actions={actions}
           modal={false}
           open={open}
           onRequestClose={this.handleClose}
           contentStyle={modalSize}>
 
-          {/* TODO - Type Create or Update */}
-
-          Write a new name for this element:
+          Write a new content for this element:
         {open ?
-            this._renderFormModal(this.actionerModal, this.handlerInput, inputs, /*selectData, someSelected*/)
+            this._renderFormModal(this.actionerModal, this.handlerInput, inputs, selectData, someSelected)
             : false}
 
         </ Dialog>
@@ -88,36 +71,30 @@ class ModalEdit extends Component {
     );
   }
 
-  _renderFormModal(submitModal, handlerInput, inputs, /*selectData, someSelected*/) {
-
-    // TODO - SelectData ? put Select. someSelect ? put default selected.
-
+  _renderFormModal(submitModal, handlerInput, inputs, selectData, someSelected) {
     return (
       <form onSubmit={event => { event.preventDefault(); submitModal() }}>
+
         {inputs.map((input, index) => {
           return (
-            <input
-              autoFocus
-              required
+            // TODO - Require TextField
+            <TextField
+              hintText={`insert ${input}`}
+              floatingLabelText={input}
               name={input}
-              type='text'
+              type={input === "price" ? "number" : "text"}
               value={this.state[input]}
               onChange={(event) => handlerInput(event)} />
           )
         })}
+
+        {selectData ? <Select
+          onChange={this.handlerSelect}
+          data={selectData}
+          defaultSelect={someSelected} /> : false}
       </form>
     )
   }
 }
 
 export default ModalEdit
-
-
-/**
- * inputs=["title", "resume", "price"]
- * type={string("create"|"update")}
- * selectData={Array{}}
- * someSelected={string}
- * action={handlerAction}
- * 
- */

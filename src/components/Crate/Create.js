@@ -52,32 +52,21 @@ class Create extends Component {
                     open={this.state.openModalGenre}
                     closeModal={this.handlerModalEditGenre}
                     inputs={["name"]}
-                    action={[console.log]} />
+                    type={"genre"}
+                    actionName={"create"}
+                    action={this.props.logicApp.createGenre} />
                 <ModalEdit 
                     open={this.state.openModalBook}
                     closeModal={this.handlerModalEditBook}
                     inputs={["title", "resume", "price"]}
                     selectData={this.props.genre}
+                    type={"book"}
+                    actionName={"create"}
                     someSelected={this.props.someSelected}
-                    action={console.log}/>
+                    action={this.props.logicApp.createBook}/>
             </MuiThemeProvider>
         );
     }
 }
 
 export default Create
-
-/**
- * genre={Array{}}
- * someSelected={string}
- * logicApp={Array<functions>}
- */
-
- /**
- * inputs=["title", "resume", "price"]
- * type={string("create"|"update")}
- * selectData={Array{}}
- * someSelected={string}
- * action={handlerAction}
- * 
- */

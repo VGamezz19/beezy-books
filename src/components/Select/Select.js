@@ -22,6 +22,9 @@ class Select extends Component {
         return onChange(value);
     };
 
+    componentDidMount() {
+        if (!this.state.value) return this.setState({ value: this.props.defaultSelect })
+    }
 
     render() {
         const { data } = this.props;
@@ -36,8 +39,8 @@ class Select extends Component {
                     disabled={data === undefined ? true : data.length <= 0 ? true : false}>
 
                     <MenuItem value={null} primaryText="" />
-                    
-                    <Divider/>
+
+                    <Divider />
 
                     {this._renderMenuItem(data)}
 
