@@ -18,62 +18,84 @@ class App extends Component {
     super(props);
 
     this.state = {
-      focusTabnav: "list",
-      focusSelectGenre: null,
+      tabNavSelected: "list",
+      genreSelected: null,
       loader: true,
-      genre: []
+      storage: []
     };
   }
 
-  createBook = (title, price, genre, resume = null) => { console.log(title, price, genre, resume) }
+  createBook = async (title, price, genre, resume = null) => {
+    const { storage } = this.state
 
-  createGenre = (name) => { console.log(name) }
+    const addedNewBook = await logic.book.create(title, price, genre, resume, storage);
+
+    this.setState({ storage: addedNewBook })
+  }
 
 
-  wichDataList = (focus, select) => {
+  createGenre = async (name) => {
+    const { storage } = this.state
 
-    const { genre } = this.state;
+    const addedNewGenre = await logic.genre.create(name, storage);
 
-    if (focus !== "list") return false;
+    this.setState({ storage: addedNewGenre })
+  }
 
-    if (!select) {
 
-      return logic.genre.extractBooksFrom(genre)
+  wichDataList = (tabNavSelected, genreSelected) => {
+    if (tabNavSelected !== "list") return false;
+
+    const { storage } = this.state;
+
+    if (!genreSelected) {
+
+      return logic.genre.extractBooksFrom(storage)
     }
 
-    return logic.genre.extractBooksFrom(genre, select)
+    return logic.genre.extractBooksFrom(storage, genreSelected)
   }
 
   componentDidMount = async () => {
-    const genre = await logic.genre.list();
+    const storage = await logic.genre.list();
 
-    this.setState({ genre, loader: false })
+    this.setState({ storage, loader: false })
   }
 
-  handlerSelect = (value) => { this.setState({ focusSelectGenre: value }) }
+  handlerSelect = (value) => { this.setState({ genreSelected: value }) }
 
-  handlerTabnav = (value) => { this.setState({ focusTabnav: value }) }
+  handlerTabnav = (value) => { this.setState({ tabNavSelected: value }) }
 
   render() {
-    const { genre, focusSelectGenre, focusTabnav, loader } = this.state;
+    const { storage, tabNavSelected, genreSelected, loader } = this.state;
 
-    const dataToList = this.wichDataList(focusTabnav, focusSelectGenre);
+    const dataToList = this.wichDataList(tabNavSelected, genreSelected);
+
+    const logicCreate = { 
+      createBook: this.createBook,
+      createGenre: this.createGenre
+    }
 
     return (
       !loader ?
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">BeezyBook - BB</h1>
-          <Select onChange={this.handlerSelect} data={genre} />
-          <Tabnav onChange={this.handlerTabnav} />
-        </header>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">BeezyBook - BB</h1>
+            <Select onChange={this.handlerSelect} data={storage} />
+            <Tabnav onChange={this.handlerTabnav} />
+          </header>
 
-        <main className="App-main">
-          {dataToList ? <List books={dataToList} /> : undefined}
-          {focusTabnav === 'create' ? <Create genre={genre} someSelected={focusSelectGenre} logicApp={{ createBook: this.createBook, createGenre: this.createGenre }} /> : undefined}
-        </main>
-      </div>
-      : <MuiThemeProvider> <LinearProgress color={"grey"} className={"pre-loader-home"}  mode="indeterminate"/> </MuiThemeProvider>
+          <main className="App-main">
+            {dataToList ? <List books={dataToList} /> : undefined}
+            {tabNavSelected === 'create' ?
+              <Create
+                storage={storage}
+                genreSelected={genreSelected}
+                logicCreate={logicCreate} />
+              : undefined}
+          </main>
+        </div>
+        : <MuiThemeProvider> <LinearProgress color={"grey"} className={"pre-loader-home"} mode="indeterminate" /> </MuiThemeProvider>
     );
   }
 }

@@ -1,5 +1,18 @@
 @import '../../sass/variables';
 
 .card-book-item {
-    margin:1em;
+    margin: 1em;
+    /* flex: 1; */
+    width: 22%;
+    .content-header {
+        padding-right: 16px !important;
+        div {
+            padding-right: 0 !important;
+        }
+    }
+}
+
+.content-list-books {
+    display: flex;
+    flex-wrap: wrap;
 }

@@ -29,41 +29,47 @@ class Create extends Component {
     }
 
     render() {
-        console.log(this.props)
+        const { logicCreate: { createGenre, createBook }, genreSelected, storage } = this.props
+
+        const { openModalBook, openModalGenre } = this.state
+
+        const inputsModalBook = ["title", "resume", "price"]
+
+        const inputsModalGenre = ["name"]
 
         return (
-
             <MuiThemeProvider>
                 <div className="create-content">
                     <h1 className="title-create"> Create storage </h1>
                     <div className="button-create-content">
-                        <RaisedButton 
-                            label="Genre" 
+                        <RaisedButton
+                            label="Genre"
                             style={{ "flex": "1" }}
-                            onClick={ () => this.handlerModalEditGenre()} />
-                        <RaisedButton 
-                            label="Book" 
+                            onClick={() => this.handlerModalEditGenre()} />
+                        <RaisedButton
+                            label="Book"
                             style={{ "flex": "1" }}
-                            onClick={ () => this.handlerModalEditBook()} />
+                            onClick={() => this.handlerModalEditBook()} />
                     </div>
                 </div>
 
-                <ModalEdit 
-                    open={this.state.openModalGenre}
-                    closeModal={this.handlerModalEditGenre}
-                    inputs={["name"]}
+                <ModalEdit
                     type={"genre"}
                     actionName={"create"}
-                    action={this.props.logicApp.createGenre} />
-                <ModalEdit 
-                    open={this.state.openModalBook}
-                    closeModal={this.handlerModalEditBook}
-                    inputs={["title", "resume", "price"]}
-                    selectData={this.props.genre}
+                    open={openModalGenre}
+                    closeModal={this.handlerModalEditGenre}
+                    inputs={inputsModalGenre}
+                    handlerSubmit={createGenre} />
+
+                <ModalEdit
                     type={"book"}
                     actionName={"create"}
-                    someSelected={this.props.someSelected}
-                    action={this.props.logicApp.createBook}/>
+                    open={openModalBook}
+                    closeModal={this.handlerModalEditBook}
+                    inputs={inputsModalBook}
+                    handlerSubmit={createBook}
+                    storage={storage}
+                    genreDefaultSelected={genreSelected} />
             </MuiThemeProvider>
         );
     }

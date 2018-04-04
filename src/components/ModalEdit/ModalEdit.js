@@ -24,23 +24,23 @@ class ModalEdit extends Component {
 
   actionerModal = () => {
 
-    const { action, type } = this.props
+    const { handlerSubmit, type } = this.props
 
     this.handleClose();
 
     if (type === "genre") {
       const { name } = this.state;
 
-      return action(name)
+      return handlerSubmit(name)
     }
 
     const { title, price, genre, resume } = this.state;
 
-    return action(title, price, genre, resume)
+    return handlerSubmit(title, price, genre, resume)
   }
 
   render() {
-    const { open, inputs, modalSize, selectData, someSelected, type, actionName } = this.props
+    const { open, inputs, modalSize, storage, genreDefaultSelected, type, actionName } = this.props
 
     const actions = [
       <FlatButton label="Cancel"
@@ -63,7 +63,7 @@ class ModalEdit extends Component {
 
           Write a new content for this element:
         {open ?
-            this._renderFormModal(this.actionerModal, this.handlerInput, inputs, selectData, someSelected)
+            this._renderFormModal(this.actionerModal, this.handlerInput, inputs, storage, genreDefaultSelected)
             : false}
 
         </ Dialog>
@@ -71,7 +71,7 @@ class ModalEdit extends Component {
     );
   }
 
-  _renderFormModal(submitModal, handlerInput, inputs, selectData, someSelected) {
+  _renderFormModal(submitModal, handlerInput, inputs, storage, genreDefaultSelected) {
     return (
       <form onSubmit={event => { event.preventDefault(); submitModal() }}>
 
@@ -88,10 +88,10 @@ class ModalEdit extends Component {
           )
         })}
 
-        {selectData ? <Select
+        {storage ? <Select
           onChange={this.handlerSelect}
-          data={selectData}
-          defaultSelect={someSelected} /> : false}
+          data={storage}
+          defaultSelect={genreDefaultSelected} /> : false}
       </form>
     )
   }

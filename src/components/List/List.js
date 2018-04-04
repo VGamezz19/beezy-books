@@ -9,23 +9,26 @@ const List = (props) => {
     const { books } = props;
 
     return (
-        <MuiThemeProvider>
-            {books.map(({ id, title, resume, price }) => <Card  className={"card-book-item"}>
-                <CardHeader
-                    key={id}
-                    title={title}
-                    subtitle={price + "€"}
-                    titleStyle={{fontSize: "2em"}}
-                    subtitleStyle={{fontSize: "1.5em"}}
-                    actAsExpander={false}
-                    showExpandableButton={false}
-                />
-                <CardText expandable={false}>
-                    {resume}
-                </CardText>
-            </Card>
-            )}
-        </ MuiThemeProvider>
+        <div className = "content-list-books">
+            <MuiThemeProvider>
+                {books.map(({ id, title, resume, price }) => <Card className={"card-book-item"}>
+                    <CardHeader
+                    className="content-header"
+                        key={id}
+                        title={title}
+                        subtitle={price + "€"}
+                        titleStyle={{ fontSize: "2em" }}
+                        subtitleStyle={{ fontSize: "1.5em" }}
+                        style={{paddingRight:0}}
+                    />
+                    <CardText>
+                        {resume}
+                    </CardText>
+                </Card>)}
+            </MuiThemeProvider>
+        </div>
+
+
     );
 }
 
