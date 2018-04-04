@@ -1,4 +1,4 @@
-import data from "./dataDB.json";
+import data from "./_data-book.json";
 
 /**
  * RequestPromiseApi class. (logic)
