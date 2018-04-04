@@ -30,15 +30,47 @@ export class RequestPromiseApi {
 
     request(method, path, body, headers) {
 
-        if( path === "api/Genre") {
+        if (path === "api/book" && method === "post") {
             return new Promise((resolve, reject) => {
 
-                setTimeout(()=> {
-                    return resolve(data)
-                } ,2000)
+                setTimeout(() => {
+                    return resolve(
+                        {
+                            status: "OK",
+                            data: {
+                                id: "numberId"
+                            }
+                        }
+                    )
+                }, 1000)
             })
         }
 
-        return new Error ("not found")
+        if (path === "api/genre" && method === "post") {
+            return new Promise((resolve, reject) => {
+
+                setTimeout(() => {
+                    return resolve(
+                        {
+                            status: "OK",
+                            data: {
+                                id: "numberId"
+                            }
+                        }
+                    )
+                }, 1000)
+            })
+        }
+
+        if (path === "api/genre") {
+            return new Promise((resolve, reject) => {
+
+                setTimeout(() => {
+                    return resolve(data)
+                }, 2000)
+            })
+        }
+
+        return new Error("not found")
     }
 }

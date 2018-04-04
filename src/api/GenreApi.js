@@ -1,9 +1,5 @@
 import { RequestPromiseApi } from "./RequestPromiseApi";
 
-// import { RequestPromise } from "request-promise";
-
-// import { IGenreApi } from "./interfaces";
-
 /**
  * GenreApi, class (logic)
  *
@@ -36,6 +32,11 @@ export class GenreApi extends RequestPromiseApi {
      */
     list() {
 
-        return this.request("get", "api/Genre");
+        return this.request("get", "api/genre");
+    }
+
+    create(name) {
+
+        return this.request("post", "api/genre", { name });
     }
 }
