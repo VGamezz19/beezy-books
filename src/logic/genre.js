@@ -1,18 +1,6 @@
-// /**
-//  * DataType MDitor, from mditor-types module (../mditor-types/ project)
-//  */
-// import File from 'mditor-types'
-
-// /**
-//  * Business genreApi, from mditor-api module (../api/ project)
-//  */
-// import { genreApi } from "mditor-api";
-
-// import { tokenUser } from "./user";
-
-// const genreApilogic = new genreApi("https", "server-mditor.herokuapp.com");
-
 import { GenreApi } from "../api/";
+
+const genreApiLogic = new GenreApi("http", "localhost", "8080");
 
 /**
  * genre logic client side (bussines manager)
@@ -65,10 +53,21 @@ const genreLogic = {
     },
 
     list() {
-        const genreApiLogic = new GenreApi("http", "locahost", "8080")
-    
+
         return genreApiLogic.list();
-    }
+    },
+
+    create: (name, storage) => {
+
+        return genreApiLogic.create(name)
+            .then(res => {
+                const id = res.data.id;
+
+                storage.push({ id, name, books: [] })
+
+                return storage
+            })
+    },
 
 }
 
