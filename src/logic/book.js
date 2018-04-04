@@ -6,7 +6,20 @@ const booksLogic = {
 
     /**
      * 
-     * Return array of books with new book added
+     * Logic book function create
+     *
+     * function to send and create new book. When "server" (just simulated)
+     * has responsed with here ID, It will return storage updated
+     * 
+     * @param {String} title title for new book
+     * @param {Number} price price for new book
+     * @param {String} genreName genre.name for new book
+     * @param {String} resume resume for new book
+     * @param {Array<{}>} storage array with all genres in client side
+     *
+     * @returns {Promise<Array[{}]>} will return a promise with array of genre (Like storage input)
+     *
+     * @version 1.0.0
      */
     create: (title, price, genreName, resume, storage) => {
 
@@ -21,38 +34,6 @@ const booksLogic = {
                 }
                 return genre
             }))
-    },
-
-    /**
-     * 
-     * Return array of books with new book updated
-     */
-    update: (id, books, title = undefined, genre = undefined) => {
-
-    },
-
-    /**
-     * 
-     * Return array of books without this book
-     */
-    remove: (id, books) => {
-
-    },
-
-    /**
-     * 
-     * Return book
-     */
-    retrieve: (id) => {
-
-    },
-
-    /**
-     * 
-     * Return array of Books
-     */
-    list: () => {
-
     }
 }
 

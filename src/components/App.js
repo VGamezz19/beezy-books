@@ -25,7 +25,23 @@ class App extends Component {
     };
   }
 
-  createBook = async (title, price, genre, resume = null) => {
+  /**
+   * 
+   * Business App.js function creeateBook
+   *
+   * async funtion to create a new book. When logic.book.create promise has finished
+   * then component state will update
+   * 
+   * @param {String} title title for new book
+   * @param {String} price price for new book
+   * @param {String} genre genre.name for new book
+   * @param {String} resume resume for new book
+   *
+   * @returns {RenderDOM} will update DOM with new book
+   *
+   * @version 1.0.0
+   */
+  createBook = async (title, price, genre, resume) => {
     const { storage } = this.state
 
     const addedNewBook = await logic.book.create(title, price, genre, resume, storage);
@@ -34,6 +50,19 @@ class App extends Component {
   }
 
 
+  /**
+   * 
+   * Business App.js function creeateGenre
+   *
+   * async funtion to create a new genre. When logic.genre.create promise has finished
+   * then component state will update
+   * 
+   * @param {String} name title for new genre
+   *
+   * @returns {RenderDOM} will update DOM with new genre
+   *
+   * @version 1.0.0
+   */
   createGenre = async (name) => {
     const { storage } = this.state
 
@@ -42,6 +71,22 @@ class App extends Component {
     this.setState({ storage: addedNewGenre })
   }
 
+  //---------------------------------------
+  /**
+   * 
+   * Event, Handlers and Helpers for App.js
+   * 
+   * @version 1.0.0
+   */
+  componentDidMount = async () => {
+    const storage = await logic.genre.list();
+
+    this.setState({ storage, loader: false })
+  }
+
+  handlerSelect = (value) => { this.setState({ genreSelected: value }) }
+
+  handlerTabnav = (value) => { this.setState({ tabNavSelected: value }) }
 
   wichDataList = (tabNavSelected, genreSelected) => {
     if (tabNavSelected !== "list") return false;
@@ -56,22 +101,12 @@ class App extends Component {
     return logic.genre.extractBooksFrom(storage, genreSelected)
   }
 
-  componentDidMount = async () => {
-    const storage = await logic.genre.list();
-
-    this.setState({ storage, loader: false })
-  }
-
-  handlerSelect = (value) => { this.setState({ genreSelected: value }) }
-
-  handlerTabnav = (value) => { this.setState({ tabNavSelected: value }) }
-
   render() {
     const { storage, tabNavSelected, genreSelected, loader } = this.state;
 
     const dataToList = this.wichDataList(tabNavSelected, genreSelected);
 
-    const logicCreate = { 
+    const logicCreate = {
       createBook: this.createBook,
       createGenre: this.createGenre
     }

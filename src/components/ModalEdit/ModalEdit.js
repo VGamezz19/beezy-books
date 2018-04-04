@@ -31,10 +31,14 @@ class ModalEdit extends Component {
     if (type === "genre") {
       const { name } = this.state;
 
+      this.setState({ name : ""})
+
       return handlerSubmit(name)
     }
 
     const { title, price, genre, resume } = this.state;
+
+    this.setState({ title: "", price: "", genre: "", resume: ""})
 
     return handlerSubmit(title, price, genre, resume)
   }
@@ -71,6 +75,20 @@ class ModalEdit extends Component {
     );
   }
 
+  /**
+   * Render function
+   * 
+   * To render form for ModalEdit
+   * 
+   * @param {Function} submitModal handler submit modal actioner
+   * @param {Function} handlerInput handler input form
+   * @param {Array<String>} inputs array of strings, to know how mucho inputs will have form
+   * @param {Array<{}>} storage array of object (genres)
+   * @param {String} genreDefaultSelected name from current genre selected
+   * 
+   * 
+   * @returns {HTMLElement} HTMLElement Form
+   */
   _renderFormModal(submitModal, handlerInput, inputs, storage, genreDefaultSelected) {
     return (
       <form onSubmit={event => { event.preventDefault(); submitModal() }}>

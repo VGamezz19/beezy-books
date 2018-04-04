@@ -13,30 +13,30 @@ import { RequestPromiseApi } from "./RequestPromiseApi";
  * @version 1.0.0
  */
 export class GenreApi extends RequestPromiseApi {
+    
+    /**
+     *
+     * Create new genre
+     *
+     * @param {String} name name for new genre
+     *
+     * @returns {Promise<{}>} res from RequestPromiseAPI.js
+     */
+    create(name) {
 
-    // constructor(protocol, host, port) {
-
-    //     super(protocol, host, port);
-    // }
+        return this.request("post", "api/genre", { name });
+    }
 
     /**
      *
-     * Create new Genre
+     * list all genres
      *
-     * @param {String} title name for new Genre
-     * @param {JWT} token JWT with user information
-     *
-     * @returns {RequestPromise} res from RequestPRomiseAPI
-     *
-     * @throws {Error} - Invalid props or invalid token
+     * @returns {Promise<{}>} res from RequestPromiseAPI.js
      */
     list() {
 
         return this.request("get", "api/genre");
     }
 
-    create(name) {
 
-        return this.request("post", "api/genre", { name });
-    }
 }

@@ -3,7 +3,7 @@ import data from "./dataDB.json";
 /**
  * RequestPromiseApi class. (logic)
  *
- * Define the standar properties and methods for User/File/Folder API
+ * Define the standar properties and methods for Book/Genre API
  *
  * @version 1.0.0
  */
@@ -30,6 +30,10 @@ export class RequestPromiseApi {
 
     request(method, path, body, headers) {
 
+    /**
+     * Simulating a request promise 
+     * https://github.com/request/request-promise
+     */
         if (path === "api/book" && method === "post") {
             return new Promise((resolve, reject) => {
 
@@ -62,7 +66,7 @@ export class RequestPromiseApi {
             })
         }
 
-        if (path === "api/genre") {
+        if (path === "api/genre" && method === "get") {
             return new Promise((resolve, reject) => {
 
                 setTimeout(() => {
