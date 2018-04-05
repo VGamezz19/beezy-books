@@ -121,7 +121,9 @@ class App extends Component {
           </header>
 
           <main className="App-main">
-            {dataToList ? <List books={dataToList} /> : undefined}
+            {dataToList ?
+              <List books={dataToList} />
+              : undefined}
             {tabNavSelected === 'create' ?
               <Create
                 storage={storage}
