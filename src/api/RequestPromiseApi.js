@@ -1,4 +1,4 @@
-import data from "./_data-genres.json";
+import jsonDataGenres from "./_data-genres.json";
 
 const uuidv4 = require('uuid/v4');
 
@@ -30,6 +30,16 @@ export class RequestPromiseApi {
         return this.baseurl;
     }
 
+    /**
+     * function request()
+     * 
+     * @param {String} method (get/post/put/delete)
+     * @param {String} path path to do a simulation of a request
+     * @param {Object} body object with content
+     * @param {Object} headers object with auth content
+     * 
+     * @returns {Promise<Object>} return an object with status and data
+     */
     request(method, path, body, headers) {
 
         /**
@@ -72,7 +82,12 @@ export class RequestPromiseApi {
             return new Promise((resolve, reject) => {
 
                 setTimeout(() => {
-                    return resolve(data)
+                    return resolve(
+                        {
+                            status: "OK",
+                            data: jsonDataGenres
+                        }
+                    )
                 }, 2000)
             })
         }

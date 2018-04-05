@@ -53,7 +53,7 @@ const genreLogic = {
      *
      * @version 1.0.0
      */
-    list() { return genreApiLogic.list() },
+    list() { return genreApiLogic.list().then(res => res.data) },
 
     /**
      * 

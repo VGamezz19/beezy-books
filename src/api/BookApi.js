@@ -25,7 +25,7 @@ export class BookApi extends RequestPromiseApi {
      *
      * @returns {Promise<{}>} res from RequestPromiseAPI.js
      */
-    create(title, price, genre, resume = null) {
+    create(title, price, genre, resume) {
 
         return this.request("post", "api/book", { title, price, genre, resume });
     }
