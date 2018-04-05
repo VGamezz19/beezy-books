@@ -1,5 +1,5 @@
 @import '../sass/variables';
-
+@import '../sass/extends';
 .App {
     text-align: center;
 }
@@ -14,13 +14,13 @@
     flex-direction: row;
     height: 150px;
     padding: 0 2em;
-    background: #9e9e9e8c !important;
+    background: $background-header !important;
 }
 
 .App-title {
     font-size: 1.5em;
     align-self: center;
-    flex:2;
+    flex: 2;
 }
 
 .App-intro {
@@ -28,9 +28,7 @@
 }
 
 .App-main {
-  display: flex;
-//   padding: 1em;
-  flex-direction: column;
+    @extend %flex-in-column;
 }
 
 .pre-loader-home {
