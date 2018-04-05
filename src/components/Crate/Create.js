@@ -41,7 +41,7 @@ class Create extends Component {
         return (
             <MuiThemeProvider>
                 <div className="create-content">
-                    <h1 className="title-create"> Create storage </h1>
+                    <h1 className="title-create"> Creation lab </h1>
                     <div className="button-create-content">
                         <RaisedButton
                             label="Genre"

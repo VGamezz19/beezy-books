@@ -115,7 +115,7 @@ class App extends Component {
       !loader ?
         <div className="App">
           <header className="App-header">
-            <h1 className="App-title">BeezyBook - BB</h1>
+            <h1 className="App-title"> BeezyBook - BB</h1>
             <Select onChange={this.handlerSelect} storage={storage} />
             <Tabnav onChange={this.handlerTabnav} />
           </header>

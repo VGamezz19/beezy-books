@@ -5,6 +5,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
+import Snackbar from 'material-ui/Snackbar';
 
 import Select from "../Select";
 
@@ -13,42 +14,78 @@ class ModalEdit extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {}
+    this.state = {
+      openSnak: false,
+      messageSnak: ""
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    const { genre } = this.state;
+    const { genreDefaultSelected } = props;
+
+    return genre !== genreDefaultSelected ?
+      this.setState({ genre: genreDefaultSelected })
+      : undefined;
   }
 
   handleClose = () => this.props.closeModal()
 
   handlerInput = (e) => {
-    const prop = e.target.name
+    const prop = e.target.name;
 
     this.setState({ [prop]: e.target.value })
   }
 
-  handlerSelect = (value) => { this.setState({ genre: value }) }
+  handlerSelect = (value) => this.setState({ genre: value })
+
+  handleClick = () => this.setState({ openSnak: true })
+
+  handleRequestClose = () => this.setState({ openSnak: false })
+
 
   actionerModal = () => {
+    if (!this.validateInputs()) { return this.setState({ messageSnak: "⚠️ ERROR: mandatory inputs", openSnak: true }) }
 
-    const { handlerSubmit, type } = this.props
+    const { handlerSubmit, type } = this.props;
 
     this.handleClose();
 
     if (type === "genre") {
       const { name } = this.state;
 
-      this.setState({ name: "" })
+      this.setState({ name: "", messageSnak: "✔︎ SUCCES:", openSnak: true })
 
       return handlerSubmit(name)
     }
 
     const { title, price, genre, resume } = this.state;
 
-    this.setState({ title: "", price: "", genre: "", resume: "" })
+    this.setState({ title: "", price: "", genre: "", resume: "", messageSnak: "✔︎ SUCCES:", openSnak: true })
 
     return handlerSubmit(title, price, genre, resume)
   }
 
+  validateInputs = () => {
+    const { inputs } = this.props;
+    let validate = true;
+
+    for (let i = 0; i < inputs.length; i++) {
+
+      if (!this.state[inputs[i]]) {
+
+        validate = false;
+        break;
+      }
+    }
+
+    return validate
+  }
+
   render() {
-    const { open, inputs, modalSize, storage, genreDefaultSelected, type, actionName } = this.props
+    const { open, inputs, modalSize, storage, genreDefaultSelected, type, actionName } = this.props;
+    
+    const { messageSnak } = this.state
 
     const actions = [
       <FlatButton label="Cancel"
@@ -75,6 +112,13 @@ class ModalEdit extends Component {
             : false}
 
         </ Dialog>
+
+        <Snackbar
+          open={this.state.openSnak}
+          message={`${messageSnak} ${actionName} ${type}`}
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </MuiThemeProvider>
     );
   }
@@ -101,6 +145,7 @@ class ModalEdit extends Component {
           return (
             // TODO - Require TextField
             <TextField
+              key={index}
               hintText={`insert ${input}`}
               floatingLabelText={input}
               name={input}

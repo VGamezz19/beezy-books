@@ -13,13 +13,13 @@ const List = (props) => {
     return (
         <div className="content-list-books">
             <MuiThemeProvider>
-                {books.map(({ id, title, resume, price }) => <Card
+                {books.map(({ id, title, genre ,resume, price }) => <Card
                     key={id}
                     className={"card-book-item"}>
                     <CardHeader
                         className="content-header"
                         title={title}
-                        subtitle={price + "€"}
+                        subtitle={`${price} € - ${genre}`}
                         titleStyle={{ fontSize: "2em" }}
                         subtitleStyle={{ fontSize: "1.5em" }}
                         style={{ paddingRight: 0 }}
