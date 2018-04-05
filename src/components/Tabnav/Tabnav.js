@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -23,7 +24,7 @@ class Tabnav extends React.Component {
 
     this.setState({ slideIndex: value });
 
-    return onChange(value)
+    return onChange ? onChange(value) : undefined
   };
 
   render() {
@@ -70,6 +71,10 @@ class Tabnav extends React.Component {
       )
     });
   }
+}
+
+Tabnav.protoTypes = {
+  onChange: PropTypes.func
 }
 
 export default Tabnav

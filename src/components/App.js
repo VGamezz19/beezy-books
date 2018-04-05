@@ -116,7 +116,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <h1 className="App-title">BeezyBook - BB</h1>
-            <Select onChange={this.handlerSelect} data={storage} />
+            <Select onChange={this.handlerSelect} storage={storage} />
             <Tabnav onChange={this.handlerTabnav} />
           </header>
 

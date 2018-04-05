@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+
 import ModalEdit from "../ModalEdit";
 
 class Create extends Component {
@@ -15,14 +18,12 @@ class Create extends Component {
     }
 
     handlerModalEditGenre = () => {
-
         const { openModalGenre } = this.state
 
         return this.setState({ openModalGenre: !openModalGenre })
     }
 
     handlerModalEditBook = () => {
-
         const { openModalBook } = this.state
 
         return this.setState({ openModalBook: !openModalBook })
@@ -73,6 +74,12 @@ class Create extends Component {
             </MuiThemeProvider>
         );
     }
+}
+
+Create.protoTypes = {
+    storage: PropTypes.arrayOf(PropTypes.object).isRequired,
+    logicCreate: PropTypes.arrayOf(PropTypes.func).isRequired,
+    genreSelected: PropTypes.string
 }
 
 export default Create

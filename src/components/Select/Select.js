@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -19,15 +21,17 @@ class Select extends Component {
 
         this.setState({ value });
 
-        return onChange(value);
-    };
+        return onChange ? onChange(value) : undefined
+    }
 
     componentDidMount() {
-        if (!this.state.value) return this.setState({ value: this.props.defaultSelect })
+        const { defaultSelect } = this.props
+
+        this.setState({ value: defaultSelect })
     }
 
     render() {
-        const { data } = this.props;
+        const { storage } = this.props;
         const { value } = this.state;
 
         return (
@@ -36,13 +40,13 @@ class Select extends Component {
                     className={"select-genre"}
                     value={value}
                     onChange={this.handleChange}
-                    disabled={data === undefined ? true : data.length <= 0 ? true : false}>
+                    disabled={storage === undefined ? true : storage.length <= 0 ? true : false}>
 
                     <MenuItem value={null} primaryText="" />
 
                     <Divider />
 
-                    {this._renderMenuItem(data)}
+                    {this._renderMenuItem(storage)}
 
                 </SelectField>
             </MuiThemeProvider>
@@ -54,17 +58,24 @@ class Select extends Component {
      * 
      * To render MenuItem for SelectField Component
      * 
-     * @param {Array<{}>} data
+     * @param {Array<{}>} storage array of genres
      * 
      * @returns {Array<MenuItem>} Array of Item from select content
      */
-    _renderMenuItem(data = []) {
-        return data.map(({ name, id }) => {
+    _renderMenuItem(storage = []) {
+        return storage.map((storage) => {
+            const {id, name} = storage
+
             return (
                 <MenuItem key={id} value={name} primaryText={name} />
             );
         })
     }
+}
+
+Select.protoTypes = {
+ storage : PropTypes.arrayOf(PropTypes.object).isRequired,
+ onChange: PropTypes.func
 }
 
 export default Select

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 
@@ -31,6 +33,10 @@ const List = (props) => {
 
 
     );
+}
+
+List.protoTypes = {
+    books: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default List;

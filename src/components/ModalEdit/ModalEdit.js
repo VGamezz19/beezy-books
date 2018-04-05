@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
+
 import Select from "../Select";
+
 class ModalEdit extends Component {
 
   constructor(props) {
@@ -31,14 +35,14 @@ class ModalEdit extends Component {
     if (type === "genre") {
       const { name } = this.state;
 
-      this.setState({ name : ""})
+      this.setState({ name: "" })
 
       return handlerSubmit(name)
     }
 
     const { title, price, genre, resume } = this.state;
 
-    this.setState({ title: "", price: "", genre: "", resume: ""})
+    this.setState({ title: "", price: "", genre: "", resume: "" })
 
     return handlerSubmit(title, price, genre, resume)
   }
@@ -108,11 +112,22 @@ class ModalEdit extends Component {
 
         {storage ? <Select
           onChange={this.handlerSelect}
-          data={storage}
+          storage={storage}
           defaultSelect={genreDefaultSelected} /> : false}
       </form>
     )
   }
+}
+
+ModalEdit.protoTypes = {
+  type: PropTypes.string.isRequired,
+  actionName: PropTypes.string.isRequired,
+  open: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  handlerSubmit: PropTypes.func.isRequired,
+  inputs: PropTypes.arrayOf(PropTypes.string),
+  storage: PropTypes.arrayOf(PropTypes.object),
+  genreDefaultSelected: PropTypes.string
 }
 
 export default ModalEdit
