@@ -10,7 +10,7 @@ const Update = (props) => {
 
     if (!props.books || props.books.length <= 0) { return false }
 
-    const { books, logicUpdate, logicDelete } = props;
+    const { books, logicUpdate, logicDelete, storage } = props;
 
     const logicOptions = {
         onUpdate: logicUpdate.updateBook,
@@ -33,9 +33,8 @@ const Update = (props) => {
                             titleStyle={{ fontSize: "2em" }}
                             subtitleStyle={{ fontSize: "1.5em" }}
                             style={{ paddingRight: 0 }}
-                            children={<MenuOptions book={book} logicOptions={logicOptions} />} />
+                            children={<MenuOptions storage={storage} book={book} logicOptions={logicOptions} />} />
                         <CardText>
-
                             {resume}
                         </CardText>
                     </Card>
@@ -49,6 +48,7 @@ const Update = (props) => {
 }
 
 Update.propTypes = {
+    storage: PropTypes.arrayOf(PropTypes.object).isRequired,
     books: PropTypes.arrayOf(PropTypes.object).isRequired,
     logicUpdate: PropTypes.shape({
         updateBook: PropTypes.func.isRequired

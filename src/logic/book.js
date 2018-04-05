@@ -35,10 +35,42 @@ const booksLogic = {
 
                     const id = res.data.id
 
-                    genre.books.push({ id, title, genre: genreName, price, resume })
+                    const newBook = { id, title, genre: genreName, price, resume, genreId: genre.id }
+
+                    genre.books.push(newBook)
                 }
                 return genre
             }))
+    },
+
+    remove: (genreId, id, storage) => {
+        try {
+            validate({ genreId, id })
+
+            /**
+             * Send to Server side
+             */
+            bookApiLogic.remove(id)
+
+            /**
+             * Interactuation with user
+             */
+            return storage.map(genre => {
+                if (genre.id === genreId) {
+
+                    genre.books = genre.books.filter(book => {
+
+                        return book.id !== id
+                    })
+                }
+
+                return genre;
+            })
+
+
+        } catch (e) {
+            console.error(e)
+        }
     }
 }
 

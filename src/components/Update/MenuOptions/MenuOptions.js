@@ -29,9 +29,9 @@ class MenuOptions extends Component {
     }
 
     render() {
-        const { logicOptions, book } = this.props;
+        const { logicOptions, book, storage } = this.props;
 
-        const inputsModal = ["title", "resume", "price", "genre"];
+        const inputsModal = ["title", "resume", "price"];
 
         const { openModal } = this.state;
         return (
@@ -52,20 +52,22 @@ class MenuOptions extends Component {
                         <MenuItem
                             leftIcon={<Delete />}
                             primaryText="Delete"
-                            onClick={() => logicOptions.onDelete(book.id)}
+                            onClick={() => logicOptions.onDelete(book.genreId, book.id)}
 
                         />
                     </IconMenu>
                 </MuiThemeProvider>
 
                 <ModalEdit
-                type={"book"}
-                actionName={"update"}
-                open={openModal}
-                closeModal={this.handlerModalEdit}
-                handlerSubmit={logicOptions.onUpdate}
-                inputs={inputsModal}
-                book={book} />
+                    type={"book"}
+                    actionName={"update"}
+                    open={openModal}
+                    closeModal={this.handlerModalEdit}
+                    handlerSubmit={logicOptions.onUpdate}
+                    inputs={inputsModal}
+                    storage={storage}
+                    genreDefaultSelected={book.genre}
+                    book={book} />
             </div>
         )
     }

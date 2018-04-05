@@ -29,4 +29,8 @@ export class BookApi extends RequestPromiseApi {
 
         return this.request("post", "api/book", { title, price, genre, resume });
     }
+
+    remove(id) {
+        console.log("server delete", id)
+    }
 }

@@ -23,7 +23,7 @@ class ModalEdit extends Component {
   componentDidMount() {
     const { book } = this.props;
     
-    if (book) this.setState({ title: book.title, price: book.price, genre: book.genre, resume: book.resume, id: book.id })
+    if (book) this.setState({ title: book.title, price: book.price, resume: book.resume, id: book.id })
   }
 
   handleClose = () => this.props.closeModal()

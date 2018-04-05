@@ -43,11 +43,11 @@ class App extends Component {
    * @version 1.0.0
    */
   createBook = async (title, price, genre, resume) => {
-    const { storage } = this.state
+    const { storage } = this.state;
 
     const addedNewBook = await logic.book.create(title, price, genre, resume, storage);
 
-    this.setState({ storage: addedNewBook })
+    return this.setState({ storage: addedNewBook })
   }
 
 
@@ -65,14 +65,18 @@ class App extends Component {
    * @version 1.0.0
    */
   createGenre = async (name) => {
-    const { storage } = this.state
+    const { storage } = this.state;
 
     const addedNewGenre = await logic.genre.create(name, storage);
 
-    this.setState({ storage: addedNewGenre })
+    return this.setState({ storage: addedNewGenre })
   }
 
-  deleteBook = (id) => console.log(id)
+  deleteBook = (genreId, id) => {
+    const { storage } = this.state;
+
+    return this.setState({ storage: logic.book.remove(genreId, id, storage) })
+  }
 
   updateBook = (id, title, price, genre, resume) => console.log(id, title, price, genre, resume)
 
@@ -146,6 +150,7 @@ class App extends Component {
             {tabNavSelected === 'update' ?
               <Update 
                 books={dataToList}
+                storage={storage}
                 logicUpdate={logicApp.logicUpdate}
                 logicDelete={logicApp.logicDelete} />
               : undefined}
