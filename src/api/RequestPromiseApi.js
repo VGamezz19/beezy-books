@@ -1,5 +1,7 @@
 import data from "./_data-book.json";
 
+const uuidv4 = require('uuid/v4');
+
 /**
  * RequestPromiseApi class. (logic)
  *
@@ -42,7 +44,7 @@ export class RequestPromiseApi {
                         {
                             status: "OK",
                             data: {
-                                id: "numberId"
+                                id: uuidv4()
                             }
                         }
                     )
@@ -58,7 +60,7 @@ export class RequestPromiseApi {
                         {
                             status: "OK",
                             data: {
-                                id: "numberId"
+                                id: uuidv4()
                             }
                         }
                     )
