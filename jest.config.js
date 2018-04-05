@@ -6,6 +6,8 @@ module.exports = {
         "<rootDir>/node_modules/",
         "<rootDir>/src/components",
         "<rootDir>/src/index.js",
+        "<rootDir>/src/api/index.js",
+        "<rootDir>/src/logic/index.js",
         "<rootDir>/src/registerServiceWorker.js"
     ],
     setupFiles: [
