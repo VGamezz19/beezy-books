@@ -32,10 +32,10 @@ export class RequestPromiseApi {
 
     request(method, path, body, headers) {
 
-    /**
-     * Simulating a request promise 
-     * https://github.com/request/request-promise
-     */
+        /**
+         * Simulating a request promise 
+         * https://github.com/request/request-promise
+         */
         if (path === "api/book" && method === "post") {
             return new Promise((resolve, reject) => {
 
@@ -77,6 +77,16 @@ export class RequestPromiseApi {
             })
         }
 
-        return new Error("not found")
+        return new Promise((resolve, reject) => {
+
+            setTimeout(() => {
+                return reject(
+                    {
+                        status: "KO",
+                        error: "not found"
+                    }
+                )
+            }, 2000)
+        })
     }
 }
