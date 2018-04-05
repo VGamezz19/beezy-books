@@ -35,7 +35,7 @@ const List = (props) => {
     );
 }
 
-List.protoTypes = {
+List.propTypes = {
     books: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 

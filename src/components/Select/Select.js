@@ -73,7 +73,7 @@ class Select extends Component {
     }
 }
 
-Select.protoTypes = {
+Select.propTypes = {
  storage : PropTypes.arrayOf(PropTypes.object).isRequired,
  onChange: PropTypes.func
 }

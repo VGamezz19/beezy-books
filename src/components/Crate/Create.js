@@ -76,9 +76,15 @@ class Create extends Component {
     }
 }
 
-Create.protoTypes = {
+Create.propTypes = {
     storage: PropTypes.arrayOf(PropTypes.object).isRequired,
-    logicCreate: PropTypes.arrayOf(PropTypes.func).isRequired,
+    /**
+     * Object with logic
+     */
+    logicCreate: PropTypes.shape({
+        createGenre: PropTypes.func.isRequired,
+        createBook: PropTypes.func.isRequired,
+    }),
     genreSelected: PropTypes.string
 }
 

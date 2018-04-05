@@ -20,13 +20,10 @@ class ModalEdit extends Component {
     };
   }
 
-  componentWillReceiveProps(props) {
-    const { genre } = this.state;
-    const { genreDefaultSelected } = props;
-
-    return genre !== genreDefaultSelected ?
-      this.setState({ genre: genreDefaultSelected })
-      : undefined;
+  componentDidMount() {
+    const { book } = this.props;
+    
+    if (book) this.setState({ title: book.title, price: book.price, genre: book.genre, resume: book.resume, id: book.id })
   }
 
   handleClose = () => this.props.closeModal()
@@ -47,7 +44,7 @@ class ModalEdit extends Component {
   actionerModal = () => {
     if (!this.validateInputs()) { return this.setState({ messageSnak: "⚠️ ERROR: mandatory inputs", openSnak: true }) }
 
-    const { handlerSubmit, type } = this.props;
+    const { handlerSubmit, type, actionName } = this.props;
 
     this.handleClose();
 
@@ -59,11 +56,23 @@ class ModalEdit extends Component {
       return handlerSubmit(name)
     }
 
-    const { title, price, genre, resume } = this.state;
+    if( actionName === "create") {
+      const { title, price, genre, resume } = this.state;
 
-    this.setState({ title: "", price: "", genre: "", resume: "", messageSnak: "✔︎ SUCCES:", openSnak: true })
+      this.setState({ title: "", price: "", genre: "", resume: "", messageSnak: "✔︎ SUCCES:", openSnak: true })
+  
+      return handlerSubmit(title, price, genre, resume)
+    }
 
-    return handlerSubmit(title, price, genre, resume)
+    if( actionName === "update") {
+      const { id, title, price, genre, resume } = this.state;
+
+      this.setState({ messageSnak: "✔︎ SUCCES:", openSnak: true })
+  
+      return handlerSubmit(id, title, price, genre, resume)
+    }
+
+    return;
   }
 
   validateInputs = () => {
@@ -83,7 +92,7 @@ class ModalEdit extends Component {
   }
 
   render() {
-    const { open, inputs, modalSize, storage, genreDefaultSelected, type, actionName } = this.props;
+    const { open, inputs, modalSize, storage, type, actionName , genreDefaultSelected} = this.props;
     
     const { messageSnak } = this.state
 
@@ -164,7 +173,7 @@ class ModalEdit extends Component {
   }
 }
 
-ModalEdit.protoTypes = {
+ModalEdit.propTypes = {
   type: PropTypes.string.isRequired,
   actionName: PropTypes.string.isRequired,
   open: PropTypes.func.isRequired,
@@ -172,7 +181,8 @@ ModalEdit.protoTypes = {
   handlerSubmit: PropTypes.func.isRequired,
   inputs: PropTypes.arrayOf(PropTypes.string),
   storage: PropTypes.arrayOf(PropTypes.object),
-  genreDefaultSelected: PropTypes.string
+  genreDefaultSelected: PropTypes.string,
+  book: PropTypes.object
 }
 
 export default ModalEdit

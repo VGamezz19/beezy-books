@@ -73,7 +73,7 @@ class Tabnav extends React.Component {
   }
 }
 
-Tabnav.protoTypes = {
+Tabnav.propTypes = {
   onChange: PropTypes.func
 }
 

@@ -1,0 +1,61 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
+
+import MenuOptions from "./MenuOptions";
+
+const Update = (props) => {
+
+    if (!props.books || props.books.length <= 0) { return false }
+
+    const { books, logicUpdate, logicDelete } = props;
+
+    const logicOptions = {
+        onUpdate: logicUpdate.updateBook,
+        onDelete: logicDelete.deleteBook
+    }
+
+    return (
+        <div className="content-update-books">
+            <MuiThemeProvider>
+                {books.map((book) => {
+                    const { id, title, genre, resume, price } = book;
+
+                    return <Card
+                        key={id}
+                        className={"card-book-item-update"}>
+                        <CardHeader
+                            className="content-header"
+                            title={title}
+                            subtitle={`${price} € - ${genre}`}
+                            titleStyle={{ fontSize: "2em" }}
+                            subtitleStyle={{ fontSize: "1.5em" }}
+                            style={{ paddingRight: 0 }}
+                            children={<MenuOptions book={book} logicOptions={logicOptions} />} />
+                        <CardText>
+
+                            {resume}
+                        </CardText>
+                    </Card>
+                }
+                )}
+            </MuiThemeProvider>
+        </div>
+
+
+    );
+}
+
+Update.propTypes = {
+    books: PropTypes.arrayOf(PropTypes.object).isRequired,
+    logicUpdate: PropTypes.shape({
+        updateBook: PropTypes.func.isRequired
+    }),
+    logicDelete: PropTypes.shape({
+        deleteBook: PropTypes.func.isRequired
+    })
+}
+
+export default Update;

@@ -7,6 +7,7 @@ import Tabnav from "./Tabnav";
 import Select from "./Select";
 import List from "./List";
 import Create from "./Crate";
+import Update from "./Update"
 
 import logic from "../logic";
 
@@ -71,6 +72,10 @@ class App extends Component {
     this.setState({ storage: addedNewGenre })
   }
 
+  deleteBook = (id) => console.log(id)
+
+  updateBook = (id, title, price, genre, resume) => console.log(id, title, price, genre, resume)
+
   //---------------------------------------
   /**
    * 
@@ -89,7 +94,7 @@ class App extends Component {
   handlerTabnav = (value) => { this.setState({ tabNavSelected: value }) }
 
   wichDataList = (tabNavSelected, genreSelected) => {
-    if (tabNavSelected !== "list") return false;
+    if (tabNavSelected !== "list" && tabNavSelected !== "update") return false;
 
     const { storage } = this.state;
 
@@ -106,9 +111,17 @@ class App extends Component {
 
     const dataToList = this.wichDataList(tabNavSelected, genreSelected);
 
-    const logicCreate = {
-      createBook: this.createBook,
-      createGenre: this.createGenre
+    const logicApp = {
+      logicCreate: {
+        createBook: this.createBook,
+        createGenre: this.createGenre
+      },
+      logicUpdate: {
+        updateBook: this.updateBook
+      },
+      logicDelete: {
+        deleteBook: this.deleteBook
+      }
     }
 
     return (
@@ -121,14 +134,20 @@ class App extends Component {
           </header>
 
           <main className="App-main">
-            {dataToList ?
+            {tabNavSelected === 'list' ?
               <List books={dataToList} />
               : undefined}
             {tabNavSelected === 'create' ?
               <Create
                 storage={storage}
                 genreSelected={genreSelected}
-                logicCreate={logicCreate} />
+                logicCreate={logicApp.logicCreate} />
+              : undefined}
+            {tabNavSelected === 'update' ?
+              <Update 
+                books={dataToList}
+                logicUpdate={logicApp.logicUpdate}
+                logicDelete={logicApp.logicDelete} />
               : undefined}
           </main>
         </div>
