@@ -1,4 +1,5 @@
 import { GenreApi } from "../api/";
+import { validate } from "./validate";
 
 const genreApiLogic = new GenreApi("http", "localhost", "8080");
 
@@ -27,7 +28,12 @@ const genreLogic = {
      */
     create: (name, storage) => {
 
-        return genreApiLogic.create(name)
+        return Promise.resolve()
+            .then(() => {
+                validate({ name });
+
+                return genreApiLogic.create(name)
+            })
             .then(res => {
                 const id = res.data.id;
 
@@ -47,12 +53,7 @@ const genreLogic = {
      *
      * @version 1.0.0
      */
-    list() {
-
-        return genreApiLogic.list();
-    },
-
-
+    list() { return genreApiLogic.list() },
 
     /**
      * 
@@ -60,8 +61,8 @@ const genreLogic = {
      *
      * funtion to list all books from some genre.
      * 
-     * @param {Array<{}>} genre need it to work's as a syncronous mode
-     * @param {String} select which genre was selected (filter)
+     * @param {Array<{}>} storage need it to work's as a syncronous mode
+     * @param {String} genreName which genre was selected (filter)
      *
      * @returns {Array<{}>} Books extracted
      *

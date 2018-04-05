@@ -1,6 +1,8 @@
-import { BookApi } from "../api"
+import { BookApi } from "../api";
 
-const bookApiLogic = new BookApi("http", "locahost", "8080")
+import { validate } from "./validate";
+
+const bookApiLogic = new BookApi("http", "locahost", "8080");
 
 const booksLogic = {
 
@@ -22,15 +24,18 @@ const booksLogic = {
      * @version 1.0.0
      */
     create: (title, price, genreName, resume, storage) => {
+        return Promise.resolve()
+            .then(() => {
+                validate({ title, price, genreName });
 
-        return bookApiLogic.create(title, price, genreName, resume)
+                return bookApiLogic.create(title, price, genreName, resume)
+            })
             .then(res => storage.map(genre => {
-
                 if (genre.name === genreName) {
 
                     const id = res.data.id
 
-                    genre.books.push({ id, title, price, resume })
+                    genre.books.push({ id, title, genre: genreName, price, resume })
                 }
                 return genre
             }))

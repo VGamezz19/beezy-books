@@ -1,4 +1,4 @@
-import data from "./_data-book.json";
+import data from "./_data-genres.json";
 
 const uuidv4 = require('uuid/v4');
 
