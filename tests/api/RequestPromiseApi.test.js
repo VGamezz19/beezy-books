@@ -1,59 +1,59 @@
-import { FakeRequestPromiseApi } from "../../src/api/FakeRequestPromiseApi"
+import { RequestPromiseApi } from "../../src/api/RequestPromiseApi"
 
-describe("FakeRequestPromiseApi should exist", () => {
+describe("RequestPromiseApi should exist", () => {
 
-    test("should import FakeRequestPromiseApi", () => {
+    test("should import RequestPromiseApi", () => {
 
-        expect(FakeRequestPromiseApi).toBeDefined();
+        expect(RequestPromiseApi).toBeDefined();
 
-        expect(FakeRequestPromiseApi).toBeInstanceOf(Object);
+        expect(RequestPromiseApi).toBeInstanceOf(Object);
     });
 
-    test("should create new FakeRequestPromiseApi whitout port", () => {
+    test("should create new RequestPromiseApi whitout port", () => {
 
-        const FakeRequestPromiseApiLogic = new FakeRequestPromiseApi("http", "localhost")
+        const RequestPromiseApiLogic = new RequestPromiseApi("http", "localhost")
 
-        expect(FakeRequestPromiseApiLogic).toBeInstanceOf(FakeRequestPromiseApi);
+        expect(RequestPromiseApiLogic).toBeInstanceOf(RequestPromiseApi);
 
-        expect(FakeRequestPromiseApiLogic.protocol).toBeDefined()
+        expect(RequestPromiseApiLogic.protocol).toBeDefined()
 
-        expect(FakeRequestPromiseApiLogic.host).toBeDefined()
+        expect(RequestPromiseApiLogic.host).toBeDefined()
 
-        expect(FakeRequestPromiseApiLogic.port).not.toBeDefined()
+        expect(RequestPromiseApiLogic.port).not.toBeDefined()
 
-        expect(FakeRequestPromiseApiLogic.request).toBeDefined()
+        expect(RequestPromiseApiLogic.request).toBeDefined()
     });
 
-    test("should create new FakeRequestPromiseApi whit port", () => {
+    test("should create new RequestPromiseApi whit port", () => {
 
-        const FakeRequestPromiseApiLogic = new FakeRequestPromiseApi("http", "localhost", 8080)
+        const RequestPromiseApiLogic = new RequestPromiseApi("http", "localhost", 8080)
 
-        expect(FakeRequestPromiseApiLogic).toBeInstanceOf(FakeRequestPromiseApi);
+        expect(RequestPromiseApiLogic).toBeInstanceOf(RequestPromiseApi);
 
-        expect(FakeRequestPromiseApiLogic.protocol).toBeDefined()
+        expect(RequestPromiseApiLogic.protocol).toBeDefined()
 
-        expect(FakeRequestPromiseApiLogic.host).toBeDefined()
+        expect(RequestPromiseApiLogic.host).toBeDefined()
 
-        expect(FakeRequestPromiseApiLogic.port).toBeDefined()
+        expect(RequestPromiseApiLogic.port).toBeDefined()
 
-        expect(FakeRequestPromiseApiLogic.request).toBeDefined()
+        expect(RequestPromiseApiLogic.request).toBeDefined()
     });
 });
 
-describe("FakeRequestPromiseApi Logic", () => {
+describe("RequestPromiseApi Logic", () => {
 
-    const FakeRequestPromiseApiLogic = new FakeRequestPromiseApi("http", "localhost")
+    const RequestPromiseApiLogic = new RequestPromiseApi("http", "localhost")
 
     test("should get baseUrl", () => {
 
-        const baseUrl = FakeRequestPromiseApiLogic.getBaseUrl()
+        const baseUrl = RequestPromiseApiLogic.getBaseUrl()
 
-        expect(baseUrl).toEqual(FakeRequestPromiseApiLogic.baseurl)
+        expect(baseUrl).toEqual(RequestPromiseApiLogic.baseurl)
     })
 
     test("should do request get api/genre", (done) => {
 
-        FakeRequestPromiseApiLogic.request("get", "api/genre")
+        RequestPromiseApiLogic.request("get", "api/genre")
             .then(res => {
 
                 expect(res).toBeInstanceOf(Object);
@@ -76,7 +76,7 @@ describe("FakeRequestPromiseApi Logic", () => {
 
         const name = "some name"
 
-        FakeRequestPromiseApiLogic.request("post", "api/genre", { name })
+        RequestPromiseApiLogic.request("post", "api/genre", { name })
             .then(res => {
 
                 expect(res).toBeInstanceOf(Object);
@@ -102,7 +102,7 @@ describe("FakeRequestPromiseApi Logic", () => {
         const genre = "some genre"
         const resume = "some resume"
 
-        FakeRequestPromiseApiLogic.request("post", "api/book",  { title, price, genre, resume })
+        RequestPromiseApiLogic.request("post", "api/book",  { title, price, genre, resume })
             .then(res => {
 
                 expect(res).toBeInstanceOf(Object);
@@ -124,7 +124,7 @@ describe("FakeRequestPromiseApi Logic", () => {
 
     test("should response KO", (done) => {
 
-        FakeRequestPromiseApiLogic.request("rando", "random")
+        RequestPromiseApiLogic.request("rando", "random")
             .catch(res => {
 
                 expect(res).toBeInstanceOf(Object);
