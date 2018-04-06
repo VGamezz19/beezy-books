@@ -18,7 +18,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 Clone gitHub repo in your local machine.
 
-open you terminal and insert these commands
+open you terminal and insert these  ⬇️
 
 ```sh
 git clone https://github.com/VGamezz19/beezy-books.git
@@ -61,9 +61,3 @@ yarn cosmos
 ## Authors
 
 - **Victor Gamez** - *web-developer* - [VGamezz19](https://github.com/VGamezz19)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License
