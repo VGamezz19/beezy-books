@@ -30,8 +30,6 @@ const List = (props) => {
                 </Card>)}
             </div>
         </MuiThemeProvider>
-
-
     );
 }
 
