@@ -30,11 +30,11 @@ class App extends Component {
    * 
    * Business App.js function creeateBook
    *
-   * async funtion to create a new book. When logic.book.create promise has finished
+   * funtion to create a new book. When logic.book.create promise has finished
    * then component state will update
    * 
    * @param {String} title title for new book
-   * @param {String} price price for new book
+   * @param {Number} price price for new book
    * @param {String} genre genre.name for new book
    * @param {String} resume resume for new book
    *
@@ -50,12 +50,60 @@ class App extends Component {
     return this.setState({ storage: addedNewBook })
   }
 
+  /**
+   * 
+   * Business App.js function creeateBook
+   *
+   * funtion to delete a book. When logic.book.delete promise has finished
+   * then component state will update
+   * 
+   * @param {String} genreId id from genre father
+   * @param {String} id id from book
+   *
+   * @returns {RenderDOM} will update DOM without book
+   *
+   * @version 1.0.0
+   */
+  deleteBook = async (genreId, id) => {
+    const { storage } = this.state;
+
+    const deletedBook = await logic.book.remove(genreId, id, storage)
+
+    return this.setState({ storage: deletedBook })
+  }
+
+  /**
+   * 
+   * Business App.js function creeateBook
+   *
+   * funtion to update a book. When logic.book.update promise has finished
+   * then component state will update
+   * 
+   * @param {String} genreId id from genre father
+   * @param {String} id id from book
+   * @param {String} title title for update book
+   * @param {Number} price price for update book
+   * @param {String} genre genre.name for update book
+   * @param {String} resume resume for update book
+   *
+   * @returns {RenderDOM} will update DOM with updated book
+   *
+   * @version 1.0.0
+   */
+  updateBook = async (genreId, id, title, price, genre, resume) => {
+    const { storage } = this.state;
+
+    const updatedBook = await logic.book.update(genreId, id, title, price, genre, resume, storage)
+
+    return this.setState({ storage: updatedBook })
+  }
+
 
   /**
    * 
    * Business App.js function creeateGenre
    *
-   * async funtion to create a new genre. When logic.genre.create promise has finished
+   * funtion to create a new genre. When logic.genre.create promise has finished
    * then component state will update
    * 
    * @param {String} name title for new genre
@@ -70,18 +118,6 @@ class App extends Component {
     const addedNewGenre = await logic.genre.create(name, storage);
 
     return this.setState({ storage: addedNewGenre })
-  }
-
-  deleteBook = (genreId, id) => {
-    const { storage } = this.state;
-
-    return this.setState({ storage: logic.book.remove(genreId, id, storage) })
-  }
-
-  updateBook = (genreId, id, title, price, genre, resume) => {
-    const { storage } = this.state;
-
-    return this.setState({ storage: logic.book.update(genreId, id, title, price, genre, resume, storage) })
   }
 
   //---------------------------------------

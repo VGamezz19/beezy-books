@@ -64,7 +64,7 @@ const genreLogic = {
      * @param {String} id id from genre
      * @param {Array<{}>} storage array with all genres in client side
      *
-     * @returns {Promise<{}>}  will return a promise with genre
+     * @returns {Array<{}>}  will return a promise with genre
      *
      * @version 1.0.0
      */
