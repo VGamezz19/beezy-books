@@ -1,14 +1,12 @@
 # beezy-books
-<!--
-- 🎨 Check Demo MDitor <http://mditor.surge.sh/#/>
 
-- 👨‍🚀 Check Demo Cosmos MDitor <http://cosmos-mditor.surge.sh/>
+- 🎨 Check Demo beezy-test <http://beezy-test.surge.sh/>
 
-⚠️ Hey! if you want to know how we have done `MDitor`, you can navigate to [./doc](https://github.com/VGamezz19/MDitor/tree/master/doc/)
+- 📝 Check 100% coverage, testing Api and Logic App <http://coverage-beezy-test.surge.sh/>
 
-⚡️ If you just want to know how dowload it, test or add new features, follow theses steps  ⬇️
+- 👨‍🚀 Check Cosmos, testing compontents <http://cosmos-beezy-test.surge.sh/>
 
--->
+⚡️ If you just want to know how dowload it, test and run this app, follow theses steps  ⬇️
 
 ## Getting Started
 
@@ -50,13 +48,22 @@ this last command will open new windows in your default browser with beezy-book!
 
 ## Running the tests
 
+logic and api:
+
 ```sh
 
 yarn test
 
+```
+
+component:
+
+```sh
+
 yarn cosmos
 
 ```
+
 
 ## Authors
 
