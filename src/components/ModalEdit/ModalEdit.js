@@ -23,7 +23,7 @@ class ModalEdit extends Component {
   componentDidMount() {
     const { book } = this.props;
     
-    if (book) this.setState({ title: book.title, price: book.price, resume: book.resume, id: book.id })
+    if (book) this.setState({ title: book.title, price: book.price, genre:book.genre, resume: book.resume, id: book.id })
   }
 
   handleClose = () => this.props.closeModal()
@@ -66,10 +66,11 @@ class ModalEdit extends Component {
 
     if( actionName === "update") {
       const { id, title, price, genre, resume } = this.state;
+      const { book } = this.props
 
       this.setState({ messageSnak: "✔︎ SUCCES:", openSnak: true })
   
-      return handlerSubmit(id, title, price, genre, resume)
+      return handlerSubmit(book.genreId, id, title, price, genre, resume)
     }
 
     return;
@@ -152,7 +153,6 @@ class ModalEdit extends Component {
 
         {inputs.map((input, index) => {
           return (
-            // TODO - Require TextField
             <TextField
               key={index}
               hintText={`insert ${input}`}

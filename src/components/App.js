@@ -78,7 +78,11 @@ class App extends Component {
     return this.setState({ storage: logic.book.remove(genreId, id, storage) })
   }
 
-  updateBook = (id, title, price, genre, resume) => console.log(id, title, price, genre, resume)
+  updateBook = (genreId, id, title, price, genre, resume) => {
+    const { storage } = this.state;
+
+    return this.setState({ storage: logic.book.update(genreId, id, title, price, genre, resume, storage) })
+  }
 
   //---------------------------------------
   /**
@@ -148,7 +152,7 @@ class App extends Component {
                 logicCreate={logicApp.logicCreate} />
               : undefined}
             {tabNavSelected === 'update' ?
-              <Update 
+              <Update
                 books={dataToList}
                 storage={storage}
                 logicUpdate={logicApp.logicUpdate}

@@ -33,6 +33,9 @@ export class RequestPromiseApi {
     /**
      * function request()
      * 
+     * Simulating a request promise 
+     * https://github.com/request/request-promise
+     *
      * @param {String} method (get/post/put/delete)
      * @param {String} path path to do a simulation of a request
      * @param {Object} body object with content
@@ -42,10 +45,6 @@ export class RequestPromiseApi {
      */
     request(method, path, body, headers) {
 
-        /**
-         * Simulating a request promise 
-         * https://github.com/request/request-promise
-         */
         if (path === "api/book" && method === "post") {
             return new Promise((resolve, reject) => {
 
@@ -58,6 +57,24 @@ export class RequestPromiseApi {
                             }
                         }
                     )
+                }, 1000)
+            })
+        }
+
+        if (method === "delete") {
+            return new Promise((resolve, reject) => {
+
+                setTimeout(() => {
+                    return resolve({ status: "OK" })
+                }, 1000)
+            })
+        }
+
+        if (method === "put") {
+            return new Promise((resolve, reject) => {
+
+                setTimeout(() => {
+                    return resolve({ status: "OK" })
                 }, 1000)
             })
         }

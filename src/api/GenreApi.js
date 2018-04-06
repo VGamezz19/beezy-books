@@ -37,6 +37,4 @@ export class GenreApi extends RequestPromiseApi {
 
         return this.request("get", "api/genre");
     }
-
-
 }

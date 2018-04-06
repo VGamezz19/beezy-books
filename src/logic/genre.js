@@ -57,6 +57,21 @@ const genreLogic = {
 
     /**
      * 
+     * Logic genre function retrieve
+     *
+     * function to retrieve genre
+     * 
+     * @param {String} id id from genre
+     * @param {Array<{}>} storage array with all genres in client side
+     *
+     * @returns {Promise<{}>}  will return a promise with genre
+     *
+     * @version 1.0.0
+     */
+    retrieve(id, storage) { return storage.find(genre => genre.id === id ) },
+
+    /**
+     * 
      * Logic genre function extractBooksFrom
      *
      * funtion to list all books from some genre.

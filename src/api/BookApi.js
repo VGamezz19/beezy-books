@@ -16,7 +16,7 @@ export class BookApi extends RequestPromiseApi {
 
     /**
      * 
-     * Create new book
+     * Create book
      * 
      * @param {String} title title for new book
      * @param {Number} price price for new book
@@ -30,7 +30,33 @@ export class BookApi extends RequestPromiseApi {
         return this.request("post", "api/book", { title, price, genre, resume });
     }
 
+    /**
+     * 
+     * Remove book
+     * 
+     * @param {String} id id of book
+     *
+     * @returns {Promise<{}>} res from RequestPromiseAPI.js
+     */
     remove(id) {
-        console.log("server delete", id)
+
+        return this.request("delete", `api/book/${id}`);
+    }
+
+    /**
+     * 
+     * Update book
+     * 
+     * @param {String} id id of book
+     * @param {String} title title for update book
+     * @param {Number} price price for update book
+     * @param {String} genreName genre.name for update book
+     * @param {String} resume resume for update book
+     *
+     * @returns {Promise<{}>} res from RequestPromiseAPI.js
+     */
+    update(id, title, price, genreName, resume)  {
+
+        return this.request("put", `api/book/${id}`, { title, price, genreName, resume })
     }
 }
