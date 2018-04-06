@@ -133,7 +133,8 @@ class App extends Component {
     }
 
     return (
-      !loader ?
+      <MuiThemeProvider> 
+      {!loader ?
         <div className="App">
           <header className="App-header">
             <h1 className="App-title"> BeezyBook - BB</h1>
@@ -160,8 +161,8 @@ class App extends Component {
               : undefined}
           </main>
         </div>
-        : <MuiThemeProvider> <LinearProgress color={"grey"} className={"pre-loader-home"} mode="indeterminate" /> </MuiThemeProvider>
-    );
+        : <LinearProgress color={"grey"} className={"pre-loader-home"} mode="indeterminate" />}
+     </MuiThemeProvider>);
   }
 }
 

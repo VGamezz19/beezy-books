@@ -11,9 +11,9 @@ const List = (props) => {
     const { books } = props;
 
     return (
-        <div className="content-list-books">
-            <MuiThemeProvider>
-                {books.map(({ id, title, genre ,resume, price }) => <Card
+        <MuiThemeProvider>
+            <div className="content-list-books">
+                {books.map(({ id, title, genre, resume, price }) => <Card
                     key={id}
                     className={"card-book-item"}>
                     <CardHeader
@@ -28,8 +28,8 @@ const List = (props) => {
                         {resume}
                     </CardText>
                 </Card>)}
-            </MuiThemeProvider>
-        </div>
+            </div>
+        </MuiThemeProvider>
 
 
     );

@@ -18,8 +18,8 @@ const Update = (props) => {
     }
 
     return (
-        <div className="content-update-books">
-            <MuiThemeProvider>
+        <MuiThemeProvider>
+            <div className="content-update-books">
                 {books.map((book) => {
                     const { id, title, genre, resume, price } = book;
 
@@ -40,9 +40,8 @@ const Update = (props) => {
                     </Card>
                 }
                 )}
-            </MuiThemeProvider>
-        </div>
-
+            </div>
+        </MuiThemeProvider>
 
     );
 }

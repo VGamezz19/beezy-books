@@ -16,7 +16,7 @@ class ModalEdit extends Component {
 
     this.state = {
       openSnak: false,
-      messageSnak: ""
+      messageSnak: "",
     };
   }
 
@@ -45,7 +45,7 @@ class ModalEdit extends Component {
     if (!this.validateInputs()) { return this.setState({ messageSnak: "⚠️ ERROR: mandatory inputs", openSnak: true }) }
 
     const { handlerSubmit, type, actionName } = this.props;
-
+    
     this.handleClose();
 
     if (type === "genre") {
@@ -94,7 +94,7 @@ class ModalEdit extends Component {
 
   render() {
     const { open, inputs, modalSize, storage, type, actionName , genreDefaultSelected} = this.props;
-    
+
     const { messageSnak } = this.state
 
     const actions = [
@@ -176,7 +176,7 @@ class ModalEdit extends Component {
 ModalEdit.propTypes = {
   type: PropTypes.string.isRequired,
   actionName: PropTypes.string.isRequired,
-  open: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   handlerSubmit: PropTypes.func.isRequired,
   inputs: PropTypes.arrayOf(PropTypes.string),
