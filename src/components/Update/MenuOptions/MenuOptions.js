@@ -74,7 +74,8 @@ class MenuOptions extends Component {
 }
 
 MenuOptions.propTypes = {
-    book: PropTypes.object,
+    storage: PropTypes.arrayOf(PropTypes.object).isRequired,
+    book: PropTypes.object.isRequired,
     /**
      * Object with logic
      */

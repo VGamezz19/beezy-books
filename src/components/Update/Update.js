@@ -8,8 +8,6 @@ import MenuOptions from "./MenuOptions";
 
 const Update = (props) => {
 
-    if (!props.books || props.books.length <= 0) { return false }
-
     const { books, logicUpdate, logicDelete, storage } = props;
 
     const logicOptions = {
@@ -20,26 +18,27 @@ const Update = (props) => {
     return (
         <MuiThemeProvider>
             <div className="content-update-books">
-                {books.map((book) => {
-                    const { id, title, genre, resume, price } = book;
+                {(!books || books.length <= 0) ?
+                    <h1> No data found</h1>
+                    : books.map((book) => {
+                        const { id, title, genre, resume, price } = book;
 
-                    return <Card
-                        key={id}
-                        className={"card-book-item-update"}>
-                        <CardHeader
-                            className="content-header"
-                            title={title}
-                            subtitle={`${price} € - ${genre}`}
-                            titleStyle={{ fontSize: "2em" }}
-                            subtitleStyle={{ fontSize: "1.5em" }}
-                            style={{ paddingRight: 0 }}
-                            children={<MenuOptions storage={storage} book={book} logicOptions={logicOptions} />} />
-                        <CardText>
-                            {resume}
-                        </CardText>
-                    </Card>
-                }
-                )}
+                        return <Card
+                            key={id}
+                            className={"card-book-item-update"}>
+                            <CardHeader
+                                className="content-header"
+                                title={title}
+                                subtitle={`${price} € - ${genre}`}
+                                titleStyle={{ fontSize: "2em" }}
+                                subtitleStyle={{ fontSize: "1.5em" }}
+                                style={{ paddingRight: 0 }}
+                                children={<MenuOptions storage={storage} book={book} logicOptions={logicOptions} />} />
+                            <CardText>
+                                {resume}
+                            </CardText>
+                        </Card>
+                    })}
             </div>
         </MuiThemeProvider>
 

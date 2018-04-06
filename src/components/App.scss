@@ -1,6 +1,7 @@
 @import '../sass/variables';
 @import '../sass/extends';
 .App {
+    @extend %main-font-app;
     text-align: center;
 }
 

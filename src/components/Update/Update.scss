@@ -1,10 +1,14 @@
 @import '../../sass/variables';
+@import '../../sass/extends';
 .card-book-item-update {
     margin: 1em;
     width: 22%;
+    z-index: 1 !important;
 }
 
 .content-update-books {
+    @extend %main-font-app;
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
 }

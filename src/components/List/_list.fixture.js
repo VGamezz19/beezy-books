@@ -1,7 +1,6 @@
-import ModalEdit from './';
+import List from './'
 
-const genreDefaultSelected = "testCosmos"
-
+import logic from "../../logic"
 const storage = [{
     "id": "cf4b207c-1f3b-1318-ba28-42d5f8fb0d2e",
     "name": "maths",
@@ -54,59 +53,18 @@ const storage = [{
     ]
 }]
 
-const book = storage[0].books[0]
+const books = logic.genre.extractBooksFrom(storage);
 
-export default [ {
-    component: ModalEdit,
-    name: 'Modal - CreateBook',
-    props: {
-        type: "book",
-        actionName: "create",
-        open: true,
-        closeModal: () => console.log(),
-        handlerSubmit: (...params) => console.log(params),
-        inputs: ["title", "resume", "price"],
-        storage
+export default [
+    {
+        component: List,
+        name: 'List - FullList',
+        props: {
+            books,
+        }
+    },
+    {
+        component: List,
+        name: 'List - EmptyList',
     }
-},
-{
-    component: ModalEdit,
-    name: 'Modal - CreateBook - defaultGenreSelected',
-    props: {
-        type: "book",
-        actionName: "create",
-        open: true,
-        closeModal: () => console.log(),
-        handlerSubmit: (...params) => console.log(params),
-        inputs: ["title", "resume", "price"],
-        storage,
-        genreDefaultSelected
-    }
-},
-{
-    component: ModalEdit,
-    name: 'Modal - CreateGenre',
-    props: {
-        type: "genre",
-        actionName: "create",
-        open: true,
-        closeModal: () => console.log(),
-        handlerSubmit: (...params) => console.log(params),
-        inputs: ["name"]
-    }
-},
-{
-    component: ModalEdit,
-    name: 'Modal - UpdateBook',
-    props: {
-        type: "book",
-        actionName: "update",
-        open: true,
-        closeModal: () => console.log(),
-        handlerSubmit: (...params) => console.log(params),
-        inputs: ["title", "resume", "price"],
-        storage,
-        genreDefaultSelected: book.genre,
-        book
-    }
-}];
+]

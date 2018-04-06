@@ -75,7 +75,8 @@ class Select extends Component {
 
 Select.propTypes = {
  storage : PropTypes.arrayOf(PropTypes.object).isRequired,
- onChange: PropTypes.func
+ onChange: PropTypes.func,
+ defaultSelect: PropTypes.string
 }
 
 export default Select

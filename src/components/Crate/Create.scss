@@ -1,6 +1,7 @@
 @import '../../sass/variables';
 @import '../../sass/extends';
 .create-content {
+    @extend %main-font-app;
     height: 100%;
     @extend %flex-in-column;
     .title-create {

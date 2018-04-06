@@ -1,6 +1,4 @@
-import ModalEdit from './';
-
-const genreDefaultSelected = "testCosmos"
+import Create from './'
 
 const storage = [{
     "id": "cf4b207c-1f3b-1318-ba28-42d5f8fb0d2e",
@@ -54,59 +52,40 @@ const storage = [{
     ]
 }]
 
-const book = storage[0].books[0]
+const logicCreate = {
+    createGenre: (...params) => console.log(params),
+    createBook: (...params) => console.log(params)
+}
 
-export default [ {
-    component: ModalEdit,
-    name: 'Modal - CreateBook',
-    props: {
-        type: "book",
-        actionName: "create",
-        open: true,
-        closeModal: () => console.log(),
-        handlerSubmit: (...params) => console.log(params),
-        inputs: ["title", "resume", "price"],
-        storage
+const genreSelected = storage[0].name
+
+export default [
+    {
+        component: Create,
+        name: 'Create - Standard',
+        props: {
+            logicCreate,
+            storage
+        }
+    },
+    {
+        component: Create,
+        name: 'Create - Default genreSelected',
+        props: {
+            logicCreate,
+            storage,
+            genreSelected
+        }
     }
-},
-{
-    component: ModalEdit,
-    name: 'Modal - CreateBook - defaultGenreSelected',
-    props: {
-        type: "book",
-        actionName: "create",
-        open: true,
-        closeModal: () => console.log(),
-        handlerSubmit: (...params) => console.log(params),
-        inputs: ["title", "resume", "price"],
-        storage,
-        genreDefaultSelected
-    }
-},
-{
-    component: ModalEdit,
-    name: 'Modal - CreateGenre',
-    props: {
-        type: "genre",
-        actionName: "create",
-        open: true,
-        closeModal: () => console.log(),
-        handlerSubmit: (...params) => console.log(params),
-        inputs: ["name"]
-    }
-},
-{
-    component: ModalEdit,
-    name: 'Modal - UpdateBook',
-    props: {
-        type: "book",
-        actionName: "update",
-        open: true,
-        closeModal: () => console.log(),
-        handlerSubmit: (...params) => console.log(params),
-        inputs: ["title", "resume", "price"],
-        storage,
-        genreDefaultSelected: book.genre,
-        book
-    }
-}];
+]
+
+
+// storage: PropTypes.arrayOf(PropTypes.object).isRequired,
+// /**
+//  * Object with logic
+//  */
+// logicCreate: PropTypes.shape({
+//     createGenre: PropTypes.func.isRequired,
+//     createBook: PropTypes.func.isRequired,
+// }),
+// genreSelected: PropTypes.string
