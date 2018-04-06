@@ -44,4 +44,34 @@ describe("BookApi Logic", () => {
                 done();
             })
     })
+
+    test("should remove book", (done) => {
+
+        bookApiLogic.remove("some id")
+            .then(res => {
+
+                expect(res).toBeInstanceOf(Object);
+
+                expect(res.status).toBeDefined();
+
+                expect(res.status).toEqual("OK");
+
+                done();
+            })
+    })
+
+    test("should update book", (done) => {
+
+        bookApiLogic.update("some id", "some title", 10, "genre name", "some resume")
+            .then(res => {
+
+                expect(res).toBeInstanceOf(Object);
+
+                expect(res.status).toBeDefined();
+
+                expect(res.status).toEqual("OK");
+
+                done();
+            })
+    })
 }); 

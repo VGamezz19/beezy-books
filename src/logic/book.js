@@ -86,7 +86,7 @@ const booksLogic = {
             })
         } catch (e) {
 
-            console.error(e)
+            return e
         }
     },
 
@@ -131,7 +131,7 @@ const booksLogic = {
 
                     if (genre.name === genreName) {
 
-                        genre.books.push({ id, title, price, genre: genreName, resume })
+                        genre.books.push({ genreId: genre.id, id, title, price, genre: genreName, resume })
                     }
                     return genre
                 }))
@@ -141,10 +141,11 @@ const booksLogic = {
                 if (genre.id === genreId) {
                     genre.books = genre.books.map(book => {
                         if (book.id === id) {
+                            book.genreId = genre.id;
                             book.title = title;
                             book.price = price;
                             book.genre = genreName;
-                            book.storage = storage;
+                            book.resume = resume;
                         }
 
                         return book
@@ -155,7 +156,7 @@ const booksLogic = {
 
         } catch (e) {
 
-            console.error(e)
+            return e
         }
     },
 }
